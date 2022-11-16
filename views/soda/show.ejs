@@ -3,8 +3,8 @@
 <h1><%= soda.name %></h1>
 <h3><%= soda.color %></h3>
 <h3><%= soda.readyToSell ? "Ready to Sell" : "Not Ready to Sell" %></h3>
-<a href="/soda/<%= index %>/edit"><button>Edit</button></a>
-<form action="/soda/<%= index %>?_method=DELETE" method="post">
+<a href="/soda/<%= soda._id %>/edit"><button>Edit</button></a>
+<form action="/soda/<%= soda._id %>?_method=DELETE" method="post">
     <input type="submit" value="Delete">
 </form>
 

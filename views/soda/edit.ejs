@@ -2,7 +2,7 @@
 
 <h1>Form to Update <%= soda.name %></h1>
 
-<form action="/soda/<%= index %>?_method=PUT" method="post">
+<form action="/soda/<%= soda._id %>?_method=PUT" method="post">
     <input type="text" name="name" placeholder="enter name here" value="<%= soda.name %>">
     <input type="text" name="color" placeholder="enter color here" value="<%= soda.color %>">
     <input type="checkbox" name="readyToSell" 

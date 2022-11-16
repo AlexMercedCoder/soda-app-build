@@ -14,9 +14,9 @@ const router = express.Router()
 // Register Routes with the Router
 //------------------------------------
 // INDEX GET /soda -> a list of sodas
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
     res.render("soda/index.ejs", {
-        sodas: Soda.getAll()
+        sodas: await Soda.find({})
     })
 })
 
@@ -26,37 +26,37 @@ router.get("/new", (req, res) => {
 })
 
 // Create Route POST /soda -> creates a new soda, redirect back to index
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     req.body.readyToSell = req.body.readyToSell ? true : false
-    Soda.create(req.body)
+    await Soda.create(req.body)
     res.redirect("/soda")
 })
 
 // EDIT Route Get /soda/:id/edit -> create form to update soda
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", async (req, res) => {
     res.render("soda/edit.ejs", {
-        soda: Soda.getOne(req.params.id),
+        soda: await Soda.findById(req.params.id),
         index: req.params.id
     })
 })
 
 // Update Route  Put /soda/:id -> receives form data, updates soda, redirects to index
-router.put("/:id", (req,res) => {
+router.put("/:id", async (req,res) => {
     req.body.readyToSell = req.body.readyToSell ? true : false
-    Soda.update(req.params.id, req.body)
+    await Soda.findByIdAndUpdate(req.params.id, req.body)
     res.redirect("/soda")
 })
 
 // Destroy Route Delete /soda/:id => deletes an individual soda
-router.delete("/:id", (req, res) => {
-    Soda.destroy(req.params.id)
+router.delete("/:id", async (req, res) => {
+    await Soda.findByIdAndRemove(req.params.id)
     res.redirect("/soda")
 })
 
 // SHOW ROUTE GET /soda/:id -> page on an individual soda
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     res.render("soda/show.ejs", {
-        soda: Soda.getOne(req.params.id),
+        soda: await Soda.findById(req.params.id),
         index: req.params.id
     })
 })

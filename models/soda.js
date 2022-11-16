@@ -1,23 +1,14 @@
-const Soda = {
-    data: [
-        {name: "Orange Soda", color: "orange", readyToSell: true},
-        {name: "Root Beer", color: "brown", readyToSell: false}
-    ],
-    getAll: function(){
-        return this.data
-    },
-    getOne: function(index){
-        return this.data[index]
-    },
-    create: function(newSoda){
-        this.data.push(newSoda)
-    },
-    update: function(index, updates){
-        this.data[index] = updates
-    },
-    destroy: function(index){
-        this.data.splice(index, 1)
-    }
-}
+const mongoose = require("./connection")
+
+// DEFINE THE SCHEMA
+
+const SodaSchema = new mongoose.Schema({
+    name: String,
+    color: String,
+    readyToSell: Boolean
+}, {timestamps: true})
+
+// CREATE THE MODEL OBJECT
+const Soda = mongoose.model("Soda", SodaSchema)
 
 module.exports = Soda

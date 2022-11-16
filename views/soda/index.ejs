@@ -7,7 +7,7 @@
 <ul>
     <% sodas.forEach((soda, index) => { %>
 
-        <a href="/soda/<%= index %>"><li><%= soda.name %></li></a>
+        <a href="/soda/<%= soda._id %>"><li><%= soda.name %></li></a>
 
     <% }) %>
 </ul>
